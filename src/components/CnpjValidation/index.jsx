@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router';
-import { Container, Logo, Title } from './styles'
+import { Container, Wrapper, Logo, Title } from './styles'
 import { Form } from '@unform/web'
 import Input from '../Input'
 import Button from '../Button'
@@ -48,12 +48,14 @@ export default function CnpjValidation() {
 
   return (
     <Container>
-        <Logo src={logo}/>
-        <Title>Pagamento de fornecedor</Title>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input name='cnpj' width='280px' height='30px' type='' label='CNPJ'/>
-            <Button width='280px' padding='5px' background='var(--green)' color='var(--white)' content='Acessar' type='submit'/>
-        </Form>
+        <Wrapper>
+            <Logo src={logo}/>
+            <Title>Pagamento de fornecedor</Title>
+            <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'flexDirection':'column', 'gap':'20px'}}>
+              <Input name='cnpj' width='280px' height='30px' type='' label='CNPJ'/>
+              <Button width='280px' padding='5px' background='var(--green)' color='var(--white)' content='Acessar' type='submit'/>
+            </Form>
+        </Wrapper>
     </Container>
   )
 }

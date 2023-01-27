@@ -6,9 +6,21 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 20px;
-    border: 1px solid;
+    height: 100vh;
+    background-color: var(--beige);
+`;
+
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;  
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px 1px;
     width: 500px;
     height: 400px;
+    background-color: var(--white);
 `;
 
 export const Logo = styled.img`

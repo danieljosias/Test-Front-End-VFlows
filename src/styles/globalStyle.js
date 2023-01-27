@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
        outline: 0;
        box-sizing: border-box;
        font-family: 'Nunito', sans-serif; 
+       
    }
 
    ul, li, button {
@@ -26,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
      --grey-2: #e9e9e9;
      --grey-3: #d3d3d3;
      --grey-4: #847f79;
+     --beige: #F5F5DC;
      --black: #000000;
      --white: #FFFFFF;
    }
