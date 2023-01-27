@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 import { useField } from '@unform/core'
-import { Input, Label } from './styles'
+import { Container, Input, Label } from './styles'
 
-export default function input({ name, width, height, type, label }) {
-    const { fieldName, registerField } = useField(name)
+export default function input({ name, width, height, type, label, ...rest }) {
+    const { fieldName, registerField, error } = useField(name)
     const inputRef = useRef(null)
 
     useEffect(() => {
@@ -15,13 +15,15 @@ export default function input({ name, width, height, type, label }) {
     }, [fieldName, registerField])
 
   return (
-    <>
-        <Label>{label}</Label>
+    <Container>
+        {error ? error : <Label>{label}</Label>}
         <Input
             ref={inputRef}
             props={{width, height}}
             type={type}
+            {...rest}
+            
         /> 
-    </>
+    </Container>
   )
 }
