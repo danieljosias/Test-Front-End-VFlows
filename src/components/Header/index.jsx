@@ -7,11 +7,6 @@ export default function header() {
     <Header>
       <Logo src={logo} alt='logo do site'/>
       <Title>Pagamento de Fornecedor</Title>
-     {/*  <Container>
-        <Text>Razão Social: </Text>
-        <Text>Nome Fantasia: </Text>
-        <Text>CNPJ: </Text>
-      </Container> */}
     </Header>
   )
 }
