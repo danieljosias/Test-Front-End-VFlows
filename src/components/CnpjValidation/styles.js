@@ -11,20 +11,39 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;  
-    border-radius: 15px;
-    box-shadow: 2px 2px 5px 1px;
-    width: 500px;
-    height: 400px;
-    background-color: var(--white);
+    @media (max-width: 1440px){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; 
+        padding: 80px 20px;
+        margin: 20px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 5px 1px;
+        background-color: var(--white);
+        max-width: 550px;
+        max-height: 450px;
+    }
+
+    @media (max-width: 768px){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; 
+        padding: 40px 20px;
+        margin: 20px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 5px 1px;
+        background-color: var(--white);
+        max-width: 550px;
+        max-height: 450px;
+    }
 `;
 
 export const Logo = styled.img`
-    width: 150px;
+    width: 50%;
 `;
 
 export const Title = styled.h3`

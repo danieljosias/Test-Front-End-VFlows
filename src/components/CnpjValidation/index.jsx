@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
-import * as Yup from 'yup'
-import { useNavigate } from 'react-router';
 import { Container, Wrapper, Logo, Title } from './styles'
+import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
+import * as Yup from 'yup'
+import { toast } from 'react-toastify';
 import Input from '../Input'
 import Button from '../Button'
 import logo from '../../assets/logo.png'
@@ -10,33 +11,32 @@ import logo from '../../assets/logo.png'
 export default function CnpjValidation() {
     const formRef = useRef(null)
     const navigate = useNavigate()
-    const [ user, setUser ] = useState(["cnpj","50684630000109"])
+    const [ users, setUsers ] = useState(["cnpj","50.684.630/0001-09"])
 
   async function handleSubmit(data) {
     try {
-      // Remove all previous errors
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        cnpj: Yup.string().min(14).required('CNPJ inválido'),
+        cnpj: Yup.string().required('CNPJ inválido'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
-      // Validation passed
-        //data.cnpj
-        //criar a função login(data.cnpf){}
-        //Realizar uma pesquisa em um array users, através de uma função login, utilizando como parâmetro o CNPJ informado.
-        //Caso a consulta retorne os dados do CNPJ, abrir a tela Contratos Vinculados.
-        //navigate('/')
-        //Caso a consulta não retorne os dados do CNPJ, enviar mensagem ao usuário: “CNPJ sem contratos ativos.”
+      const isUser = users.filter((user) => user === data.cnpj) 
+
+      if(isUser.length !== 0){
+        /* navigate('') */
+      }else{
+        toast.error('CNPJ sem contratos ativos')
+      }
+
     } catch (err) {
 
       const validationErrors = {};
 
-      // Validation failed
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -52,7 +52,7 @@ export default function CnpjValidation() {
             <Logo src={logo}/>
             <Title>Pagamento de fornecedor</Title>
             <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'flexDirection':'column', 'gap':'20px'}}>
-              <Input name='cnpj' width='280px' height='30px' type='' label='CNPJ'/>
+              <Input name='cnpj' label='CNPJ'/>
               <Button width='280px' padding='5px' background='var(--green)' color='var(--white)' content='Acessar' type='submit'/>
             </Form>
         </Wrapper>

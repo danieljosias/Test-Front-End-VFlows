@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 import { useField } from '@unform/core'
-import { Container, Input, Label } from './styles'
+import { Container, Label } from './styles'
+import InputMask from 'react-input-mask'
 
-export default function input({ name, width, height, type, label, ...rest }) {
+export default function input({ name, type, label, ...rest }) {
     const { fieldName, registerField, error } = useField(name)
     const inputRef = useRef(null)
 
@@ -10,19 +11,19 @@ export default function input({ name, width, height, type, label, ...rest }) {
         registerField({
             name: fieldName,
             ref: inputRef.current,
-            path: 'value'
+            path: 'value',
         })
     }, [fieldName, registerField])
 
   return (
     <Container>
         {error ? error : <Label>{label}</Label>}
-        <Input
+        <InputMask 
             ref={inputRef}
-            props={{width, height}}
             type={type}
-            {...rest}
-            
+            {...rest} 
+            mask="99.999.999/9999-99"
+            style={{'width':'280px','height':'30px'}} 
         /> 
     </Container>
   )
