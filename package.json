@@ -13,7 +13,9 @@
     "@unform/web": "^2.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.8.0",
+    "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"
   },
