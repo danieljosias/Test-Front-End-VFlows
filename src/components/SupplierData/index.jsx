@@ -11,7 +11,8 @@ export default function SupplierData() {
   return (
     <Container>
       {isContract.map((contract, index)=>{  
-        <Wrapper key={index}>
+        return<>
+          <Wrapper key={index}>
           <Left>
             <Text>Razão Social: {contract.razaosocial}</Text>
             <Text>Nome Fantasia: {contract.nomefantasia}</Text>
@@ -20,6 +21,7 @@ export default function SupplierData() {
             <Text>CNPJ: {contract.cnpj}</Text>
           </Right>
         </Wrapper>
+        </>
       })}
     </Container>
   )

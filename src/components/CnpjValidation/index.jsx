@@ -1,10 +1,10 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Container, Wrapper, Logo, Title } from './styles'
 import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify';
-import Input from '../Input'
+import Input from '../InputMask'
 import Button from '../Button'
 import logo from '../../assets/logo.png'
 import { UserContext } from '../../contexts/Users/userContext';

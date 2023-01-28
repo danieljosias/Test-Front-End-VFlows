@@ -21,9 +21,9 @@ export default function Contracts() {
       navigate('/access')
     } 
 
-    const goToData = () => {
+    const goToInvoice = () => {
       if(check !== false){
-        navigate('/data')
+        navigate('/invoice')
       }else{
         toast.error('Selecionar o contrato')
       }
@@ -53,7 +53,7 @@ export default function Contracts() {
           </>
         </Wrapper>
         })}
-        <ContractListButton backAccess={backAccess} goToData={goToData}/>
+        <ContractListButton backAccess={backAccess} goToInvoice={goToInvoice}/>
     </Container>
   ) 
 }

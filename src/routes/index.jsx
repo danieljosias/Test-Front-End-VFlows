@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Access from '../pages/Access'
 import Contracts from '../pages/Contracts'
+import Invoice from '../pages/Invoice'
 
 export default function Router(){
   return (
@@ -8,6 +9,7 @@ export default function Router(){
       <Route path="/" element={<Navigate to="/access" replace={true}/>} />
       <Route path="/access" element={<Access />} />
       <Route path="/contracts" element={<Contracts />} />
+      <Route path="/invoice" element={<Invoice/>} />
     </Routes>
   );
 };
