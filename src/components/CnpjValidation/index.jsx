@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Container, Wrapper, Logo, Title } from './styles'
 import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
@@ -7,12 +7,13 @@ import { toast } from 'react-toastify';
 import Input from '../Input'
 import Button from '../Button'
 import logo from '../../assets/logo.png'
+import { UserContext } from '../../contexts/Users/userContext';
 
 export default function CnpjValidation() {
     const formRef = useRef(null)
     const navigate = useNavigate()
-    const [ users, setUsers ] = useState(["cnpj","50.684.630/0001-09"])
-
+    const { userData } = useContext(UserContext);
+    
   async function handleSubmit(data) {
     try {
       formRef.current.setErrors({});
@@ -25,10 +26,11 @@ export default function CnpjValidation() {
         abortEarly: false,
       });
 
-      const isUser = users.filter((user) => user === data.cnpj) 
+      const isUser = userData.filter((user) => user.cnpj === data.cnpj && user) 
+      localStorage.setItem('cnpj',isUser[0].cnpj)
 
       if(isUser.length !== 0){
-        /* navigate('') */
+        navigate('/contracts')
       }else{
         toast.error('CNPJ sem contratos ativos')
       }

@@ -1,33 +1,43 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { Form } from '@unform/web'
 import { Container, Wrapper, Input, Label, TextContainer, Text, PorcentageContainer, Porcentage, IconContainer } from './styles'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { ContractContext } from '../../contexts/Contracts/contractContext'
 
 export default function Contracts() {
   const formRef = useRef(null)
 
   async function handleSubmit(data){}
 
+    const { contractData } = useContext(ContractContext);
+
+    const cnpj = localStorage.getItem('cnpj')
+    const isContract = contractData.filter((contract) => contract.cnpj === cnpj && contract)
+
   return (
     <Container>
-        <Wrapper>
+        {isContract.map((contract)=>{
+          return <Wrapper key={contract.id}>
+          <>
             <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'gap':'20px', 'alignItems': 'center'}}>
                 <Input type='checkbox'/>
-                <Label>Título do 1º contrato</Label>
+                <Label>{contract.nomecontrato}</Label>
             </Form>
             
             <TextContainer>
-                <Text>11002200-01</Text>
+                <Text>{contract.codigo}</Text>
             </TextContainer>
 
             <PorcentageContainer>
-                <Porcentage>5%</Porcentage>
+                <Porcentage>{contract.retencao}</Porcentage>
             </PorcentageContainer>
 
             <IconContainer>
                 <AiOutlineSearch fill='var(--white)' style={{'cursor':'pointer'}}/>
             </IconContainer>
+          </>
         </Wrapper>
+        })}
     </Container>
   ) 
 }
