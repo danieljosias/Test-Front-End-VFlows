@@ -25,7 +25,7 @@ export default function Contracts() {
             </PorcentageContainer>
 
             <IconContainer>
-                <AiOutlineSearch fill='var(--white)'/>
+                <AiOutlineSearch fill='var(--white)' style={{'cursor':'pointer'}}/>
             </IconContainer>
         </Wrapper>
     </Container>
