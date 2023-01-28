@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 10px;
+    gap: 10px;
 `;
 
 export const Wrapper = styled.div`
@@ -12,15 +14,18 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     background-color: var(--grey-2);
     padding: 5px 60px;
+    width: 1000px;
 
-    @media (max-width: 1440px){
-        width: 1000px;
+    @media (max-width: 768px){
+        width: 748px;
     }
 `;
 
 export const Label = styled.label``;
 
-export const Input = styled.input``;
+export const Input = styled.input`
+    cursor: pointer;
+`;
 
 export const TextContainer = styled.div`
     display: flex;
