@@ -23,9 +23,17 @@ export const Wrapper = styled.div`
     background-color: var(--white);
     max-width: 550px;
     max-height: 450px;
-
+    
     @media (max-width: 768px){
         padding: 40px 20px;
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    @media (max-width: 1440px){
+        padding: 40px 20px;
+        max-width: 400px;
+        max-height: 400px;
     }
 `;
 
