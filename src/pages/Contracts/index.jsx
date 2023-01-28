@@ -4,7 +4,6 @@ import SupplierData from '../../components/SupplierData'
 import Title from '../../components/Title'
 import ContractListHeader from '../../components/ContractListHeader'
 import Contracts from '../../components/Contracts'
-import ContractListButton from '../../components/ContractListButton'
 import Footer from '../../components/Footer'
 import { Container } from './styles'
 
@@ -16,7 +15,6 @@ export default function index() {
       <Title content='Contratros Vinculados'/>
       <ContractListHeader/>
       <Contracts/>
-      <ContractListButton />
       <Footer/>
     </Container>
   )

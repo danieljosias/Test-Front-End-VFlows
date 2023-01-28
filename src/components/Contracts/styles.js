@@ -21,6 +21,12 @@ export const Wrapper = styled.div`
     }
 `;
 
+export const Form = styled.form`
+    display: flex;
+    gap: 20px;
+    align-items: center;
+`;
+
 export const Label = styled.label``;
 
 export const Input = styled.input`
@@ -59,4 +65,6 @@ export const IconContainer = styled.div`
     border-radius: 4px;
     background-color: var(--blue);
     padding: 5px;
+    color: var(--white);
+    cursor: pointer;
 `;

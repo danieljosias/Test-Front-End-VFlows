@@ -2,7 +2,6 @@ export const users = [
     {
         id: 1,
         cnpj: '50.684.630/0001-08',
-  
     },
     {
         id: 2,

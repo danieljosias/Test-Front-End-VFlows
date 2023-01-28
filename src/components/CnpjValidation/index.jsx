@@ -12,7 +12,7 @@ import { UserContext } from '../../contexts/Users/userContext';
 export default function CnpjValidation() {
     const formRef = useRef(null)
     const navigate = useNavigate()
-    const { userData } = useContext(UserContext);
+    const { userData  } = useContext(UserContext);
     
   async function handleSubmit(data) {
     try {

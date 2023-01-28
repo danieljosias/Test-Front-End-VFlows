@@ -1,27 +1,42 @@
-import React, { useContext, useRef } from 'react'
-import { Form } from '@unform/web'
-import { Container, Wrapper, Input, Label, TextContainer, Text, PorcentageContainer, Porcentage, IconContainer } from './styles'
+import React, { useContext, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Container, Wrapper,  Form, Input, Label, TextContainer, Text, PorcentageContainer, Porcentage, IconContainer } from './styles'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
+import { toast } from 'react-toastify'
+import ContractListButton from '../ContractListButton'
+import { UserContext } from '../../contexts/Users/userContext'
 
 export default function Contracts() {
-  const formRef = useRef(null)
+    const [ check, setCheck ] = useState(false)
 
-  async function handleSubmit(data){}
+    const navigate = useNavigate()
 
     const { contractData } = useContext(ContractContext);
+    const { userData } = useContext(UserContext);
 
-    const cnpj = localStorage.getItem('cnpj')
-    const isContract = contractData.filter((contract) => contract.cnpj === cnpj && contract)
+    const isContract = contractData.filter((contract) => contract.cnpj === userData[0].cnpj && contract)
+
+    const backAccess = () => {
+      navigate('/access')
+    } 
+
+    const goToData = () => {
+      if(check !== false){
+        navigate('/data')
+      }else{
+        toast.error('Selecionar o contrato')
+      }
+    } 
 
   return (
     <Container>
         {isContract.map((contract)=>{
           return <Wrapper key={contract.id}>
           <>
-            <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'gap':'20px', 'alignItems': 'center'}}>
-                <Input type='checkbox'/>
-                <Label>{contract.nomecontrato}</Label>
+            <Form>
+              <Input type='checkbox' checked={check} onChange={(e) => setCheck(e.target.checked)}/>
+              <Label>{contract.nomecontrato}</Label>
             </Form>
             
             <TextContainer>
@@ -33,11 +48,12 @@ export default function Contracts() {
             </PorcentageContainer>
 
             <IconContainer>
-                <AiOutlineSearch fill='var(--white)' style={{'cursor':'pointer'}}/>
+                <AiOutlineSearch />
             </IconContainer>
           </>
         </Wrapper>
         })}
+        <ContractListButton backAccess={backAccess} goToData={goToData}/>
     </Container>
   ) 
 }

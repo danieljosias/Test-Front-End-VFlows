@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: flex-end;
     gap: 20px;
+    width: 1000px;
     
     @media (max-width: 1440px){
         max-width: 1220px;

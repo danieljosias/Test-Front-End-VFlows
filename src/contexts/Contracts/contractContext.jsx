@@ -5,7 +5,7 @@ export const ContractContext = createContext();
 
 export const ContractContextProvider = ({ children }) => {
     const [contractData, setContractData] = useState(contracts);
-
+    
     return (
         <ContractContext.Provider
           value={{contractData}}
