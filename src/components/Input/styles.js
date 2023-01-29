@@ -7,12 +7,8 @@ export const Container = styled.div`
 
 export const Input = styled.input`
     width: ${(p) => p.props.width};
-    height: ${(p) => p.props.heigth};
-
-    @media (max-width: 768px){
-        width: 160px;
-    }
-
+    height: ${(p) => p.props.height};
+    background: ${(p) => p.props.background};
 `;
 
 export const Label = styled.label``;

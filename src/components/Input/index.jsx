@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { useField } from '@unform/core'
 import { Container, Label, Input } from './styles'
 
-export default function input({ width, height, name, type, label, ...rest }) {
+export default function input({ width, height, background, name, type, label, ...rest }) {
     const { fieldName, registerField, error } = useField(name)
     const inputRef = useRef(null)
 
@@ -18,7 +18,7 @@ export default function input({ width, height, name, type, label, ...rest }) {
     <Container>
         {error ? error : <Label>{label}</Label>}
         <Input 
-            props={{width, height}}
+            props={{width, height, background}}
             ref={inputRef}
             type={type}
             {...rest} 
