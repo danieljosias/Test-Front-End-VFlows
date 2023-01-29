@@ -7,6 +7,7 @@ import Input from '../Input'
 import InvoiceButton from '../InvoiceButton'
 import { BsFillTrashFill } from 'react-icons/bs'
 
+
 export default function Invoice() {
     const formRef = useRef(null)
     const navigate = useNavigate()
@@ -111,8 +112,10 @@ export default function Invoice() {
               {/* <Input name='file' type='file' label='Data de Vencimento' accept=".pdf*" multiple />  */}
               <BsFillTrashFill></BsFillTrashFill>
             </Invoices>
-          </Form>
+
+          {/* cuidado com o botao fora do form */}
           <InvoiceButton backToAccess={backToAccess}/>
+          </Form>
         </Wrapper>
     </Container>
   )
