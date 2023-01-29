@@ -1,49 +1,54 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Container, Wrapper, TextContainer, Text, Label, InputFileLabel, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox } from './styles'
+import { Container, Wrapper, TextContainer, Text, InputFile, Label, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox, Total, Title, Value, Percentual } from './styles'
 import Input from '../Input'
 import InvoiceButton from '../InvoiceButton'
 import { BsFillTrashFill } from 'react-icons/bs'
-
+import { toast } from 'react-toastify'
 
 export default function Invoice() {
     const formRef = useRef(null)
+    const inputRef = useRef(null)
     const navigate = useNavigate()
-    const [ check, setCheck ] = useState(false)
+    const [ checkOne, setCheckOne ] = useState(false)
+    const [ checkTwo, setCheckTwo ] = useState(false)
+    const [ amount, setAmount ] = useState()
+    const [ total, setTotal ] = useState()
+    const retention = localStorage.getItem('retention')
 
     async function handleSubmit(data) {
         try {
           formRef.current.setErrors({});
     
           const schema = Yup.object().shape({
-            noteNumber: Yup.number().required('Número da Nota Obrigatório'),
-            issueDate: Yup.date().required('Data de Emissão Obrigatório'),
-            dueDate: Yup.date().required('Data de Vencimento Obrigatório'),
-            amount: Yup.number().positive().integer().required('Valor Obrigatório'),
-            issqn: Yup.number.integer(2).required('ISSQN” deve ser maior que zero'),
-            irrf: Yup.number.integer(2).required('IRRF” deve ser maior que zero'),
-            csll: Yup.number.integer(2).required('CSLL” deve ser maior que zero'),
-            cofins: Yup.number.integer(2).required('COFINS” deve ser maior que zero'),
-            inss: Yup.number.integer(2).required('INSS” deve ser maior que zero'),
-            pis: Yup.number.integer(2).required('PIS” deve ser maior que zero'),
-            value: Yup.number.integer(2).required('PIS” deve ser maior que zero'),
-            percentage: Yup.number.integer(2).required('PIS” deve ser maior que zero'),
-            file: Yup.file(),
+            noteNumber: Yup.string().required('Número da Nota Obrigatório'),
+            issueDate: Yup.string().required('Data de Emissão Obrigatório'),
+            dueDate: Yup.string().required('Data de Vencimento Obrigatório'),
+            amount: Yup.string().required('Valor Obrigatório'),
+            issqn: Yup.number().moreThan(0).required('Ser maior que zero'),
+            irrf: Yup.number().moreThan(0).required('Ser maior que zero'),
+            csll: Yup.number().moreThan(0).required('Ser maior que zero'),
+            cofins: Yup.number().moreThan(0).required('Ser maior que zero'),
+            inss: Yup.number().moreThan(0).required('Ser maior que zero'),
+            pis: Yup.number().moreThan(0).required('Ser maior que zero'),
+            value: Yup.string(),
+            percentage: Yup.string(),
+            file: Yup.string(),
           });
     
           await schema.validate(data, {
             abortEarly: false,
-          });
+          });;
 
-          console.log('Solicitação 999999');
+          toast.success('Solicitação 999999');
           navigate('/access')
   
         } catch (err) {
     
           const validationErrors = {};
-    
+          
           if (err instanceof Yup.ValidationError) {
             err.inner.forEach(error => {
               validationErrors[error.path] = error.message;
@@ -57,6 +62,14 @@ export default function Invoice() {
       navigate('/contracts')
     }
 
+    const clearFile = () => {
+      inputRef.current.value = null
+    }
+
+    const calculateRetention = () => {
+      setTotal(Math.round(parseFloat(amount)/parseFloat(retention)))
+    }
+
   return (
     <Container>
         <Wrapper>
@@ -66,55 +79,52 @@ export default function Invoice() {
           </TextContainer>
 
           <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'flexWrap':'wrap', 'gap':'20px'}}>
-            <Input name='noteNumber' label='Número da Nota' type='text' width='223px' height=''/>
-            <Input name='issueDate' label='Data de Emissão' type='date' width='223px' height=''/>
-            <Input name='dueDate' label='Data de Vencimento' type='date' width='223px' height=''/>
-            <Input name='amount' placeholder='R$' label='Valor' type='text' width='223px' height=''/>
-            
-           {/*  Se clicar. motrar o componente abaixo */}
-           {/* checked={check} onChange={(e) => setCheck(e.target.checked) */}
-           {/* passar check para dentro do component e no styled components deixar display none, caso o check seja false */}
-            {/* retencao de impostos */}
+            <Input name='noteNumber' label='Número da Nota' type='text' width='223px'/>
+            <Input name='issueDate' label='Data de Emissão' type='date' width='223px'/>
+            <Input name='dueDate' label='Data de Vencimento' type='date' width='223px'/>
+            <Input name='amount' label='Valor' type='text' width='223px' onChange={(e) => setAmount(e.target.value)}/>
+          
             <TaxesRetention>
               <Checkbox>
-                <Input name='check' type='checkbox' width='' height=''/>
+                <Input name='check' type='checkbox' checked={checkOne} onChange={(e) => setCheckOne(e.target.checked)} />
                 <Label>Retenção de Impostos</Label>
               </Checkbox>
 
+              {checkOne && 
               <FieldSet>
-                <Input name='issqn' label='ISSQN' type='text' width='140px' height=''/>
-                <Input name='irrf' label='IRRF' type='text' width='140px' height=''/>
-                <Input name='csll' label='CSLL' type='text' width='140px' height=''/>
-                <Input name='cofins' label='COFINS' type='text' width='140px' height=''/>
-                <Input name='inss' label='INSS' type='text' width='140px' height=''/>
-                <Input name='pis' label='PIS' type='text' width='140px' height=''/>
+                <Input name='issqn' label='ISSQN' type='text' width='140px'/>
+                <Input name='irrf' label='IRRF' type='text' width='140px'/>
+                <Input name='csll' label='CSLL' type='text' width='140px'/>
+                <Input name='cofins' label='COFINS' type='text' width='140px'/>
+                <Input name='inss' label='INSS' type='text' width='140px'/>
+                <Input name='pis' label='PIS' type='text' width='140px'/>
               </FieldSet>
+              }
             </TaxesRetention> 
 
-            {/* retencao de tecnicas */}
             <TechnicalRetention>
               <Checkbox>
-                <Input name='check' type='checkbox' width='' height=''/>
+                <Input name='check' type='checkbox' checked={checkTwo} onChange={(e) => setCheckTwo(e.target.checked)} onClick={calculateRetention}/>
                 <Label>Retenção Técnicas</Label>
               </Checkbox>
 
-              {/* campo “Valor”, valor deve ter sido calculado baseado no percentual de retenção do contrato; */}
-              {/* campo “Percentual”, valor deve ser o percentual de retenção técnica do contrato; */}
-              <FieldSet>
-                <Input name='value' label='Valor' placeholder='R$'  type='text' width='460px' height='25px'  background='var(--grey-3)'/>
-                <Input name='percentage' label='Percentual' type='text' width='460px' height='25px'  background='var(--grey-3)'/>
-              </FieldSet>
+                {checkTwo && 
+                  <Total>
+                    <Title>Valor</Title>
+                    {total ? <Value>{total}</Value> : <Value></Value>}
+                    
+                    <Title>Percentual</Title>
+                    <Percentual>{retention}</Percentual>
+                  </Total>
+                } 
             </TechnicalRetention>
 
-            {/* anexar notas fiscais */}
             <Invoices>
-              <InputFileLabel>Anexar Nota Fiscal</InputFileLabel>
-              {/* <Input name='file' type='file' label='Data de Vencimento' accept=".pdf*" multiple />  */}
-              <BsFillTrashFill></BsFillTrashFill>
+              <InputFile name='file' ref={inputRef} type='file' accept=".pdf*" multiple/>
+              <BsFillTrashFill onClick={clearFile}></BsFillTrashFill>
             </Invoices>
 
-          {/* cuidado com o botao fora do form */}
-          <InvoiceButton backToAccess={backToAccess}/>
+            <InvoiceButton backToAccess={backToAccess}/>
           </Form>
         </Wrapper>
     </Container>

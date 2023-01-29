@@ -28,16 +28,17 @@ export default function CnpjValidation() {
 
       const isUser = userData.filter((user) => user.cnpj === data.cnpj && user) 
       localStorage.setItem('cnpj',isUser[0].cnpj)
-
+      
       if(isUser.length !== 0){
         navigate('/contracts')
-      }else{
-        toast.error('CNPJ sem contratos ativos')
       }
 
     } catch (err) {
-
       const validationErrors = {};
+
+      if(err){
+        toast.error('CNPJ sem contratos ativos')
+      }
 
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach(error => {

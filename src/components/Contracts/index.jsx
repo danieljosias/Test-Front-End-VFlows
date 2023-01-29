@@ -5,17 +5,17 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
 import { toast } from 'react-toastify'
 import ContractListButton from '../ContractListButton'
-import { UserContext } from '../../contexts/Users/userContext'
 
 export default function Contracts() {
     const [ check, setCheck ] = useState(false)
 
     const navigate = useNavigate()
 
-    const { contractData } = useContext(ContractContext);
-    const { userData } = useContext(UserContext);
+    const { contractData, setContractData } = useContext(ContractContext);
 
-    const isContract = contractData.filter((contract) => contract.cnpj === userData[0].cnpj && contract)
+    const cnpj = localStorage.getItem('cnpj')
+    const isContract = contractData.filter((contract,i) => contract.cnpj === cnpj && contract)
+    localStorage.setItem('retention',isContract[0].retencao)
 
     const backAccess = () => {
       navigate('/access')

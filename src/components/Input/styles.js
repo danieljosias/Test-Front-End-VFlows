@@ -11,4 +11,5 @@ export const Input = styled.input`
     background: ${(p) => p.props.background};
 `;
 
-export const Label = styled.label``;
+export const Label = styled.label`
+`;

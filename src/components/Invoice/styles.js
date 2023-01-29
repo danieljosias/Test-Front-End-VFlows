@@ -27,10 +27,7 @@ export const Text = styled.p``;
 export const Label = styled.label`
 `;
 
-export const InputFileLabel = styled.label`
-    background-color: var(--grey-3);
-    padding: 10px;
-    cursor: pointer;
+export const InputFile = styled.input`
 `;
 
 export const FieldSet = styled.fieldset`
@@ -43,14 +40,15 @@ export const FieldSet = styled.fieldset`
 
 export const TaxesRetention = styled.div`
      margin-bottom: 60px;
+    
 `;
 
 export const TechnicalRetention = styled.div``;
 
 export const Invoices = styled.div`
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 20px;
 `;
 
 export const Checkbox = styled.div`
@@ -59,3 +57,25 @@ export const Checkbox = styled.div`
     margin-bottom: 20px;
 
 `;
+
+export const Total = styled.div`
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid var(--red);
+    border-radius: 5px;
+    width: 100%;
+    max-width: 1000px;
+`
+
+export const Title = styled.p``
+
+export const Percentual = styled.div`
+    width: 350px;
+    background: var(--grey-3);
+`
+export const Value = styled.div`
+    width: 350px;
+    background: var(--grey-3);
+`
+

@@ -13,7 +13,7 @@ export const contracts = [
         razaosocial: 'PHP',
         nomefantasia: 'PHP LTDA',
         cnpj: '50.684.630/0001-09',
-        nomecontrato: 'Dev LTDA',
+        nomecontrato: 'PHP LTDA',
         codigo: '11002200-02',
         retencao: '3%',
     },
