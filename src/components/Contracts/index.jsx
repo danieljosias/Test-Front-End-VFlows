@@ -8,14 +8,14 @@ import { ContractContext } from '../../contexts/Contracts/contractContext'
 
 export default function Contracts() {
     const [ check, setCheck ] = useState(false)
-    const { contractData } = useContext(ContractContext)
+    const { contractData, setRetention, setCode, setTitle } = useContext(ContractContext)
     const navigate = useNavigate()
 
     const cnpj = localStorage.getItem('cnpj')
     const isContract = contractData.filter((contract) => contract.cnpj === cnpj && contract)
-    localStorage.setItem('retention',isContract[0].retencao)
-    localStorage.setItem('code',isContract[0].codigo)
-
+    setRetention(isContract[0].retencao)
+    setCode(isContract[0].codigo)
+    setTitle(isContract[0].nomecontrato)
 
     const backAccess = () => {
       navigate('/access')

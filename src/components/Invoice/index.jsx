@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
@@ -7,6 +7,7 @@ import Input from '../Input'
 import InvoiceButton from '../InvoiceButton'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { toast } from 'react-toastify'
+import { ContractContext } from '../../contexts/Contracts/contractContext';
 
 export default function Invoice() {
     const formRef = useRef(null)
@@ -16,12 +17,9 @@ export default function Invoice() {
     const [ checkTwo, setCheckTwo ] = useState(false)
     const [ amount, setAmount ] = useState()
     const [ total, setTotal ] = useState()
-
-    const retention = localStorage.getItem('retention')
-    const code = localStorage.getItem('codigo')
+    const { retention, code, title } = useContext(ContractContext)
 
     async function handleSubmit(data) {
-
         try {
           formRef.current.setErrors({});
     
@@ -79,7 +77,7 @@ export default function Invoice() {
         <Wrapper>
         <TextContainer>
             <Text>Código do Contrato:{code}</Text>
-            <Text>Título do Contrato</Text>
+            <Text>Título do Contrato: {title}</Text>
           </TextContainer>
 
           <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'flexWrap':'wrap', 'gap':'20px'}}>
@@ -109,7 +107,7 @@ export default function Invoice() {
             <TechnicalRetention>
               <Checkbox>
                 <Input name='check' type='checkbox' checked={checkTwo} onChange={(e) => setCheckTwo(e.target.checked)} onClick={calculateRetention}/>
-                <Label>Retenção Técnicas</Label>
+                <Label>Retenção Técnica</Label>
               </Checkbox>
 
                 {checkTwo && 
