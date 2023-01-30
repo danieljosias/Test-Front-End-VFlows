@@ -126,7 +126,7 @@ export default function Invoice() {
             </TechnicalRetention>
 
             <Invoices>
-              <InputFile ref={inputRef} type='file' multiple required/>
+              <InputFile ref={inputRef} type='file' multiple/>
               <Trash onClick={clearFile}>
                 <BsFillTrashFill fill='var(--white)' ></BsFillTrashFill>
               </Trash>
