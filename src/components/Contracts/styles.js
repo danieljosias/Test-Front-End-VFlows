@@ -58,7 +58,7 @@ export const Porcentage = styled.p`
     color: var(--white);
 `;
 
-export const IconContainer = styled.div`
+export const ButtonSearch = styled.button`
     display: flex;
     text-align: center;
     justify-content: center;

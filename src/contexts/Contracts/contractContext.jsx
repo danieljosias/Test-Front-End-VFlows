@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { contracts } from "../../mocks/contracts";
 
 export const ContractContext = createContext();
