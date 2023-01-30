@@ -64,19 +64,22 @@ export const Total = styled.div`
     padding: 20px;
     border: 1px solid var(--red);
     border-radius: 5px;
+    width: 100%;
+    max-width: 1000px;
 `
 
 export const Title = styled.p``
+export const TitleContainer = styled.div``
 
 export const Percentual = styled.div`
-    width: 450px;
+    width: 470px;
     background: var(--grey-3);
     padding: 5px;
     height: 30px;
 `
 
 export const Value = styled.div`
-    width: 450px;
+    width: 470px;
     background: var(--grey-3);
     padding: 5px;
     height: 30px;

@@ -2,20 +2,20 @@ import React, { useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container, Wrapper,  Form, Input, Label, TextContainer, Text, PorcentageContainer, Porcentage, IconContainer } from './styles'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { ContractContext } from '../../contexts/Contracts/contractContext'
 import { toast } from 'react-toastify'
 import ContractListButton from '../ContractListButton'
+import { ContractContext } from '../../contexts/Contracts/contractContext'
 
 export default function Contracts() {
     const [ check, setCheck ] = useState(false)
-
+    const { contractData } = useContext(ContractContext)
     const navigate = useNavigate()
 
-    const { contractData, setContractData } = useContext(ContractContext);
-
     const cnpj = localStorage.getItem('cnpj')
-    const isContract = contractData.filter((contract,i) => contract.cnpj === cnpj && contract)
+    const isContract = contractData.filter((contract) => contract.cnpj === cnpj && contract)
     localStorage.setItem('retention',isContract[0].retencao)
+    localStorage.setItem('code',isContract[0].codigo)
+
 
     const backAccess = () => {
       navigate('/access')

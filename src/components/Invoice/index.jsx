@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Container, Wrapper, TextContainer, Text, InputFile, Label, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox, Total, Title, Value, Percentual, Trash } from './styles'
+import { Container, Wrapper, TextContainer, Text, InputFile, Label, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox, Total, Title, Value, Percentual, Trash, TitleContainer } from './styles'
 import Input from '../Input'
 import InvoiceButton from '../InvoiceButton'
 import { BsFillTrashFill } from 'react-icons/bs'
@@ -16,9 +16,12 @@ export default function Invoice() {
     const [ checkTwo, setCheckTwo ] = useState(false)
     const [ amount, setAmount ] = useState()
     const [ total, setTotal ] = useState()
+
     const retention = localStorage.getItem('retention')
+    const code = localStorage.getItem('codigo')
 
     async function handleSubmit(data) {
+
         try {
           formRef.current.setErrors({});
     
@@ -41,8 +44,6 @@ export default function Invoice() {
 
           toast.success('Solicitação 999999');
           navigate('/access')
-
-          console.log(data);
   
         } catch (err) {
     
@@ -76,8 +77,8 @@ export default function Invoice() {
   return (
     <Container>
         <Wrapper>
-          <TextContainer>
-            <Text>Código do Contrato:</Text>
+        <TextContainer>
+            <Text>Código do Contrato:{code}</Text>
             <Text>Título do Contrato</Text>
           </TextContainer>
 
@@ -113,15 +114,15 @@ export default function Invoice() {
 
                 {checkTwo && 
                   <Total>
-                    <div>
+                    <TitleContainer>
                       <Title>Valor</Title>
                       {total ? <Value>R$ {total}</Value> : <Value></Value>}
-                    </div>
+                    </TitleContainer>
                     
-                    <div>
+                    <TitleContainer>
                       <Title>Percentual</Title>
                       <Percentual>{retention}</Percentual>
-                    </div>
+                    </TitleContainer>
                   </Total>
                 } 
             </TechnicalRetention>
