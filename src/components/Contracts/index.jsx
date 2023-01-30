@@ -1,13 +1,15 @@
 import React, { useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Container, Wrapper,  Form, Input, Label, TextContainer, Text, PorcentageContainer, Porcentage, IconContainer } from './styles'
+import { Container, Wrapper,  Form, Input, Label, TextContainer, Text, PorcentageContainer, Porcentage, ButtonSearch } from './styles'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 import ContractListButton from '../ContractListButton'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
+import { ModalContracts } from '../ModalContracts'
 
 export default function Contracts() {
     const [ check, setCheck ] = useState(false)
+    const [ modal, setModal ] = useState(false)
     const { contractData, setRetention, setCode, setTitle } = useContext(ContractContext)
     const navigate = useNavigate()
 
@@ -29,8 +31,18 @@ export default function Contracts() {
       }
     } 
 
+    const handleOpenModal = () =>{
+      setModal(true)
+    }
+
+    const handleCloseModal = () =>{
+      setModal(false)
+    }
+
+
   return (
     <Container>
+      <ModalContracts modal={modal} handleCloseModal={handleCloseModal}/>
         {isContract.map((contract)=>{
           return <Wrapper key={contract.id}>
           <>
@@ -47,9 +59,9 @@ export default function Contracts() {
                 <Porcentage>{contract.retencao}</Porcentage>
             </PorcentageContainer>
 
-            <IconContainer>
-                <AiOutlineSearch />
-            </IconContainer>
+            <ButtonSearch onClick={handleOpenModal}>
+              <AiOutlineSearch />
+            </ButtonSearch>
           </>
         </Wrapper>
         })}
