@@ -10,8 +10,6 @@ export const Footer = styled.footer`
     justify-content: space-between;
     align-items: center;
     width: 1000px;
-    position: absolute;
-    bottom: 0;
 
     @media (max-width: 768px){
         width: 720px;

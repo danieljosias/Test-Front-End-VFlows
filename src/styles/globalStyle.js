@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
         all: unset;
    }
 
-   button {
+   button, input {
         cursor: pointer;
    }
 
