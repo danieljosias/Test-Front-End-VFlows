@@ -7,13 +7,11 @@ export const Container = styled.div`
 
 export const Footer = styled.footer`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 1000px;
-
-    @media (max-width: 768px){
-        width: 720px;
-    }
+    gap: 200px;
+    margin-top: 300px;
+    width: 100%;
 `;
 
 export const Logo = styled.img`
