@@ -1,8 +1,8 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Container, Wrapper, TextContainer, Text, InputFile, Label, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox, Total, Title, Value, Percentual } from './styles'
+import { Container, Wrapper, TextContainer, Text, InputFile, Label, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox, Total, Title, Value, Percentual, Trash } from './styles'
 import Input from '../Input'
 import InvoiceButton from '../InvoiceButton'
 import { BsFillTrashFill } from 'react-icons/bs'
@@ -23,19 +23,16 @@ export default function Invoice() {
           formRef.current.setErrors({});
     
           const schema = Yup.object().shape({
-            noteNumber: Yup.string().required('Número da Nota Obrigatório'),
-            issueDate: Yup.string().required('Data de Emissão Obrigatório'),
-            dueDate: Yup.string().required('Data de Vencimento Obrigatório'),
-            amount: Yup.string().required('Valor Obrigatório'),
-            issqn: Yup.number().moreThan(0).required('Ser maior que zero'),
-            irrf: Yup.number().moreThan(0).required('Ser maior que zero'),
-            csll: Yup.number().moreThan(0).required('Ser maior que zero'),
-            cofins: Yup.number().moreThan(0).required('Ser maior que zero'),
-            inss: Yup.number().moreThan(0).required('Ser maior que zero'),
-            pis: Yup.number().moreThan(0).required('Ser maior que zero'),
-            value: Yup.string(),
-            percentage: Yup.string(),
-            file: Yup.string(),
+            noteNumber: Yup.number().typeError('Número da Nota Obrigatório'),
+            issueDate: Yup.date().typeError('Data de Emissão Obrigatório'),
+            dueDate: Yup.date().typeError('Data de Vencimento Obrigatório'),
+            amount: Yup.number().typeError('Valor Obrigatório'),
+            issqn: Yup.number().moreThan(0).typeError('Ser maior que zero'),
+            irrf: Yup.number().moreThan(0).typeError('Ser maior que zero'),
+            csll: Yup.number().moreThan(0).typeError('Ser maior que zero'),
+            cofins: Yup.number().moreThan(0).typeError('Ser maior que zero'),
+            inss: Yup.number().moreThan(0).typeError('Ser maior que zero'),
+            pis: Yup.number().moreThan(0).typeError('Ser maior que zero'),
           });
     
           await schema.validate(data, {
@@ -44,6 +41,8 @@ export default function Invoice() {
 
           toast.success('Solicitação 999999');
           navigate('/access')
+
+          console.log(data);
   
         } catch (err) {
     
@@ -69,6 +68,10 @@ export default function Invoice() {
     const calculateRetention = () => {
       setTotal(Math.round(parseFloat(amount)/parseFloat(retention)))
     }
+
+    useEffect(() => {
+      calculateRetention()
+    },[amount])
 
   return (
     <Container>
@@ -110,18 +113,24 @@ export default function Invoice() {
 
                 {checkTwo && 
                   <Total>
-                    <Title>Valor</Title>
-                    {total ? <Value>{total}</Value> : <Value></Value>}
+                    <div>
+                      <Title>Valor</Title>
+                      {total ? <Value>R$ {total}</Value> : <Value></Value>}
+                    </div>
                     
-                    <Title>Percentual</Title>
-                    <Percentual>{retention}</Percentual>
+                    <div>
+                      <Title>Percentual</Title>
+                      <Percentual>{retention}</Percentual>
+                    </div>
                   </Total>
                 } 
             </TechnicalRetention>
 
             <Invoices>
-              <InputFile name='file' ref={inputRef} type='file' accept=".pdf*" multiple/>
-              <BsFillTrashFill onClick={clearFile}></BsFillTrashFill>
+              <InputFile ref={inputRef} type='file' multiple required/>
+              <Trash onClick={clearFile}>
+                <BsFillTrashFill fill='var(--white)' ></BsFillTrashFill>
+              </Trash>
             </Invoices>
 
             <InvoiceButton backToAccess={backToAccess}/>

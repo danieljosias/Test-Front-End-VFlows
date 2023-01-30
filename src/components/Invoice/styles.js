@@ -64,18 +64,27 @@ export const Total = styled.div`
     padding: 20px;
     border: 1px solid var(--red);
     border-radius: 5px;
-    width: 100%;
-    max-width: 1000px;
 `
 
 export const Title = styled.p``
 
 export const Percentual = styled.div`
-    width: 350px;
+    width: 450px;
     background: var(--grey-3);
+    padding: 5px;
+    height: 30px;
 `
+
 export const Value = styled.div`
-    width: 350px;
+    width: 450px;
     background: var(--grey-3);
+    padding: 5px;
+    height: 30px;
+`
+
+export const Trash = styled.button`
+    border-radius: 5px;
+    background: var(--red);
+    padding: 5px;
 `
 
