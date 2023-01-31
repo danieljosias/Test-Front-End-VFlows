@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import ContractListButton from '../ContractListButton'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
 import { ModalContracts } from '../ModalContracts'
-import { UserContext } from '../../contexts/Users/userContext'
+
 
 export default function Contracts() {
     const [ check, setCheck ] = useState(false)

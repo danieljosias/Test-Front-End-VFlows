@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 import { ModalHeader, Title, ModalBody, Span, Text, ButtonClose } from './styles'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
+import { UserContext } from '../../contexts/Users/userContext'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
 export default function ModalContent({handleCloseModal}) {
     const { contractData } = useContext(ContractContext)
+    const { cnpj } = useContext(UserContext)
 
-    const cnpj = localStorage.getItem('cnpj')
     const isContract = contractData.filter((contract) => contract.cnpj === cnpj && contract)
 
   return (

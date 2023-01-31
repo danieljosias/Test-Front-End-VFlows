@@ -26,5 +26,14 @@ export const contracts = [
         codigo: '11002200-03',
         retencao: '3%',
     },
+    {
+        id: 4,
+        razaosocial: 'Google',
+        nomefantasia: 'Google LTDA',
+        cnpj: '50.684.630/0001-10',
+        nomecontrato: 'Google LTDA',
+        codigo: '11002200-03',
+        retencao: '10%',
+    },
     
 ]
