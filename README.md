@@ -17,7 +17,7 @@
 ---
 
 ### 1.1. Tecnologias
-Abaixo as tecnologias utilizadas na contrução da aplicação:
+Abaixo as tecnologias utilizadas na construção da aplicação:
 
 - [ReactJS](https://reactjs.org/docs/getting-started.html/)
 - [Styled Components](https://styled-components.com/docs/)
