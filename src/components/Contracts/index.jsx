@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import ContractListButton from '../ContractListButton'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
 import { ModalContracts } from '../ModalContracts'
-
+import { UserContext } from '../../contexts/Users/userContext'
 
 export default function Contracts() {
     const [ check, setCheck ] = useState(false)
@@ -40,12 +40,11 @@ export default function Contracts() {
       setModal(false)
     }
 
-
   return (
     <Container>
       <ModalContracts modal={modal} handleCloseModal={handleCloseModal}/>
         {isContract.map((contract)=>{
-          return <Wrapper key={contract.id}>
+          return <Wrapper key={contract.id}> 
           <>
             <Form>
               <Input type='checkbox' checked={check} onChange={(e) => setCheck(e.target.checked)}/>

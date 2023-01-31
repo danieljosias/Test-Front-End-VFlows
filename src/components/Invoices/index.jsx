@@ -40,8 +40,9 @@ export default function Invoice() {
             abortEarly: false,
           });;
 
-          toast.success('Solicitação 999999');
+          toast.success('Solicitação 999999 foi enviada com sucesso.');
           navigate('/access')
+          console.log(data)
   
         } catch (err) {
     
