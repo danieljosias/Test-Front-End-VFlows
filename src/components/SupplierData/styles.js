@@ -33,4 +33,8 @@ export const Right = styled.div`
     padding: 10px;
 `;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+`
+export const Span = styled.span`
+    font-weight: bold;
+`;

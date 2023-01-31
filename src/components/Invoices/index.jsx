@@ -2,9 +2,9 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { Container, Wrapper, TextContainer, Text, InputFile, Label, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox, Total, Title, Value, Percentual, Trash, TitleContainer } from './styles'
+import { Container, Wrapper, TextContainer, Span, Text, InputFile, Label, FieldSet, TaxesRetention, TechnicalRetention, Invoices, Checkbox, Total, Title, Value, Percentual, Trash, TitleContainer } from './styles'
 import Input from '../Input'
-import InvoiceButton from '../InvoiceButton'
+import InvoicesButton from '../InvoicesButton'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { toast } from 'react-toastify'
 import { ContractContext } from '../../contexts/Contracts/contractContext';
@@ -65,7 +65,7 @@ export default function Invoice() {
     }
 
     const calculateRetention = () => {
-      setTotal(Math.round(parseFloat(amount)/parseFloat(retention)))
+      setTotal(Math.round(parseFloat(amount) * parseFloat(retention)/100))
     }
 
     useEffect(() => {
@@ -76,8 +76,8 @@ export default function Invoice() {
     <Container>
         <Wrapper>
         <TextContainer>
-            <Text>Código do Contrato:{code}</Text>
-            <Text>Título do Contrato: {title}</Text>
+            <Text><Span>Código do Contrato: </Span>{code}</Text>
+            <Text><Span>Título do Contrato: </Span>{title}</Text>
           </TextContainer>
 
           <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'flexWrap':'wrap', 'gap':'20px'}}>
@@ -94,12 +94,12 @@ export default function Invoice() {
 
               {checkOne && 
               <FieldSet>
-                <Input name='issqn' label='ISSQN' type='text' width='140px'/>
+                <Input name='issqn' label='ISSQN' type='text' width='130px'/>
                 <Input name='irrf' label='IRRF' type='text' width='140px'/>
                 <Input name='csll' label='CSLL' type='text' width='140px'/>
                 <Input name='cofins' label='COFINS' type='text' width='140px'/>
                 <Input name='inss' label='INSS' type='text' width='140px'/>
-                <Input name='pis' label='PIS' type='text' width='140px'/>
+                <Input name='pis' label='PIS' type='text' width='130px'/>
               </FieldSet>
               }
             </TaxesRetention> 
@@ -128,11 +128,11 @@ export default function Invoice() {
             <Invoices>
               <InputFile ref={inputRef} type='file' multiple/>
               <Trash onClick={clearFile}>
-                <BsFillTrashFill fill='var(--white)' ></BsFillTrashFill>
+                <BsFillTrashFill fill='var(--white)'></BsFillTrashFill>
               </Trash>
             </Invoices>
 
-            <InvoiceButton backToAccess={backToAccess}/>
+            <InvoicesButton backToAccess={backToAccess}/>
           </Form>
         </Wrapper>
     </Container>

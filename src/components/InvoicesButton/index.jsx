@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Wrapper } from './styles'
 import Button from '../Button'
 
-export default function InvoiceButton({backToAccess}) {
+export default function InvoicesButton({backToAccess}) {
   return (
     <Container>
       <Wrapper>

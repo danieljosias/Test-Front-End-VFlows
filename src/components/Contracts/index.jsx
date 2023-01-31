@@ -6,15 +6,16 @@ import { toast } from 'react-toastify'
 import ContractListButton from '../ContractListButton'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
 import { ModalContracts } from '../ModalContracts'
+import { UserContext } from '../../contexts/Users/userContext'
 
 export default function Contracts() {
     const [ check, setCheck ] = useState(false)
     const [ modal, setModal ] = useState(false)
+    const { cnpj } = useContext(UserContext);
     const { contractData, setRetention, setCode, setTitle } = useContext(ContractContext)
     const navigate = useNavigate()
 
-    const cnpj = localStorage.getItem('cnpj')
-    const isContract = contractData.filter((contract) => contract.cnpj === cnpj && contract)
+    const isContract = contractData.filter((contract) => contract.cnpj === cnpj && contract);
     setRetention(isContract[0].retencao)
     setCode(isContract[0].codigo)
     setTitle(isContract[0].nomecontrato)
@@ -23,9 +24,9 @@ export default function Contracts() {
       navigate('/access')
     } 
 
-    const goToInvoice = () => {
+    const goToInvoices = () => {
       if(check !== false){
-        navigate('/invoice')
+        navigate('/invoices')
       }else{
         toast.error('Selecionar o contrato')
       }
@@ -65,7 +66,7 @@ export default function Contracts() {
           </>
         </Wrapper>
         })}
-        <ContractListButton backAccess={backAccess} goToInvoice={goToInvoice}/>
+        <ContractListButton backAccess={backAccess} goToInvoices={goToInvoices}/>
     </Container>
   ) 
 }

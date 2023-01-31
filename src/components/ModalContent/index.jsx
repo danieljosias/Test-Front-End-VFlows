@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ModalHeader, Title, ModalBody, Text, ButtonClose } from './styles'
+import { ModalHeader, Title, ModalBody, Span, Text, ButtonClose } from './styles'
 import { ContractContext } from '../../contexts/Contracts/contractContext'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
@@ -19,12 +19,12 @@ export default function ModalContent({handleCloseModal}) {
       </ModalHeader>
       
       <ModalBody>
-        <Text>Razão Social: {isContract[0].rezaosocial}</Text>
-        <Text>Nome Fantasia: {isContract[0].nomefantasia}</Text>
-        <Text>CNPJ: {isContract[0].cnpj}</Text>
-        <Text>Nome do Contrato: {isContract[0].nomecontrato}</Text>
-        <Text>Código do Contrato: {isContract[0].codigo}</Text>
-        <Text>Retenção Técnica: {isContract[0].retencao}</Text>
+        <Text><Span>Razão Social:</Span> {isContract[0].razaosocial}</Text>
+        <Text><Span>Nome Fantasia:</Span> {isContract[0].nomefantasia}</Text>
+        <Text><Span>CNPJ:</Span> {isContract[0].cnpj}</Text>
+        <Text><Span>Nome do Contrato:</Span> {isContract[0].nomecontrato}</Text>
+        <Text><Span>Código do Contrato:</Span> {isContract[0].codigo}</Text>
+        <Text><Span>Retenção Técnica:</Span> {isContract[0].retencao}</Text>
       </ModalBody>
     </div>
   )

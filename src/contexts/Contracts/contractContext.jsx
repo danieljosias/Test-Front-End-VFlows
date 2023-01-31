@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import { contracts } from "../../mocks/contracts";
 
 export const ContractContext = createContext();
@@ -8,7 +8,8 @@ export const ContractContextProvider = ({ children }) => {
     const [retention, setRetention] = useState();
     const [code, setCode] = useState();
     const [title, setTitle] = useState();
-      
+
+
     return (
         <ContractContext.Provider
           value={{contractData,setContractData, retention, setRetention, code, setCode, title, setTitle}}

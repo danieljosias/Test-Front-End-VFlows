@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
     border-radius: 5px;
     width: 1000px;
     padding: 10px 10px;
+    border: 1px solid var(--red);
 
     @media (max-width: 768px){
         width: 748px;
@@ -20,6 +21,10 @@ export const TextContainer = styled.div`
     display: flex;
     gap: 220px;
     margin: 20px 0px;
+`;
+
+export const Span = styled.span`
+    font-weight: bold;
 `;
 
 export const Text = styled.p``;
@@ -39,7 +44,7 @@ export const FieldSet = styled.fieldset`
 `;
 
 export const TaxesRetention = styled.div`
-     margin-bottom: 60px;
+    margin-bottom: 60px;
     
 `;
 
@@ -69,20 +74,21 @@ export const Total = styled.div`
 `
 
 export const Title = styled.p``
+
 export const TitleContainer = styled.div``
 
 export const Percentual = styled.div`
-    width: 470px;
+    width: 450px;
     background: var(--grey-3);
     padding: 5px;
-    height: 30px;
+    height: 25px;
 `
 
 export const Value = styled.div`
-    width: 470px;
+    width: 450px;
     background: var(--grey-3);
     padding: 5px;
-    height: 30px;
+    height: 25px;
 `
 
 export const Trash = styled.button`

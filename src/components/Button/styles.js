@@ -10,4 +10,5 @@ export const Button = styled.button`
     color: ${(p) => p.props.color};
     font-weight: ${(p) => p.props.weight};
     font-size: ${(p) => p.props.size};
+    box-shadow: ${(p) => p.props.boxShadow || '2px 2px 5px var(--black)'};
 `;

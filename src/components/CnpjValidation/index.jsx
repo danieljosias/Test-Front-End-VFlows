@@ -12,7 +12,7 @@ import { UserContext } from '../../contexts/Users/userContext';
 export default function CnpjValidation() {
     const formRef = useRef(null)
     const navigate = useNavigate()
-    const { userData } = useContext(UserContext);
+    const { userData, setCnpj } = useContext(UserContext);
 
   async function handleSubmit(data) {
     try {
@@ -27,8 +27,7 @@ export default function CnpjValidation() {
       });
 
       const isUser = userData.filter((user) => user.cnpj === data.cnpj && user) 
-      localStorage.setItem('cnpj',isUser[0].cnpj)
-
+      setCnpj(isUser[0].cnpj)
 
       if(isUser.length !== 0){
         navigate('/contracts')
@@ -53,9 +52,9 @@ export default function CnpjValidation() {
   return (
     <Container>
         <Wrapper>
-            <Logo src={logo}/>
+            <Logo src={logo} alt='logo do site'/>
             <Title>Pagamento de fornecedor</Title>
-            <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'flexDirection':'column', 'gap':'20px'}}>
+            <Form ref={formRef} onSubmit={handleSubmit} style={{'display':'flex', 'flexDirection':'column', 'gap':'20px', 'border':'1px solid var(--grey-2)','padding':'20px'}}>
               <Input name='cnpj' label='CNPJ'/>
               <Button width='280px' padding='5px' background='var(--green)' color='var(--white)' content='Acessar' type='submit'/>
             </Form>

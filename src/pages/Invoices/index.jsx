@@ -3,7 +3,7 @@ import { Container } from './styles'
 import Header from '../../components/Header'
 import SupplierData from '../../components/SupplierData'
 import Title from '../../components/Title'
-import Invoice from '../../components/Invoice'
+import Invoices from '../../components/Invoices'
 import Footer from '../../components/Footer'
 
 export default function index() {
@@ -12,7 +12,7 @@ export default function index() {
         <Header/>
         <SupplierData/>
         <Title content='Dados da Nota Fiscal'/>
-        <Invoice/>
+        <Invoices/>
         <Footer/>
     </Container>
   )

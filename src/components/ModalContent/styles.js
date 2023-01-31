@@ -19,3 +19,7 @@ export const ButtonClose = styled.button``;
 export const Text = styled.p`
     text-align: justify;
 `;
+
+export const Span = styled.span`
+    font-weight: bold;
+`;
